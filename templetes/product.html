@@ -1,0 +1,82 @@
+{% load static %}
+<section class="latest-products spad">
+    <div class="container">
+        <div class="product-filter">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Latest Products</h2>
+                    </div>
+                    <ul class="product-controls">
+                        <li data-filter="*">All</li>
+                        {% for category in categorys %}
+                        <li data-filter=".{{ category.title }}">{{ category.title }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="product-list">
+            {% for category in categorys %}
+            {% for product in category.products.all %}
+            <div class="col-lg-3 col-sm-6 mix {{category.title}} ">
+                
+                <div class="single-product-item">
+                    <figure>
+                        <a href="{% url 'productpage' product.slug %}"><img src="{{ product.image.url }}" alt=""></a>
+                        <div class="p-status">{{product.category.title }}</div>
+                    </figure>
+                    <div class="product-text">
+                        <a href="{% url 'productpage' product.slug %}"><h6>{{ product.title }}</h6></a>
+                        
+                        <p>${{ product.prize }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<!-- FOr Features products -->
+
+
+
+
+<section class="latest-products spad">
+    <div class="container">
+        <div class="product-filter">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <div class="section-title">
+                        <h2>Featured Products</h2>
+                    </div>
+                    <ul class="product-controls">
+                        <li data-filter="*">All</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row" id="product-list">
+            
+            {% for product in my_product %}
+            <div class="col-lg-3 col-sm-6 mix {{category.title}} ">
+                
+                <div class="single-product-item">
+                    <figure>
+                        <a href="{% url 'productpage' product.slug %}"><img src="{{ product.image.url }}" alt=""></a>
+                        <div class="p-status">{{product.category.title }}</div>
+                    </figure>
+                    <div class="product-text">
+                       <a href="{% url 'productpage' product.slug %}"> <h6>{{ product.title }}</h6> </a>
+                        <p>${{ p.prize }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+        </div>
+    </div>
+</section>

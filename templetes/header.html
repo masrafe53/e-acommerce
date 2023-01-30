@@ -1,0 +1,35 @@
+{% load static %}
+<header class="header-section">
+    <div class="container-fluid">
+        <div class="inner-header">
+            <div class="logo">
+                <a href="{% url 'home' %}"><img src="{% static 'img/logo.png' %}" alt=""></a>
+            </div>
+            <div class="header-right">
+                <img src="{% static 'img/icons/search.png' %}" alt="" class="search-trigger">
+                <a href="{% url 'cart_page' %}">
+                    <img src="{% static 'img/icons/bag.png' %}" alt="">
+                    <span>{{cart|length}}</span>
+                </a>
+            </div>
+            <div class="user-access">
+                <a href="{% url 'login' %}">Register / Login</a>
+            </div>
+            <nav class="main-menu mobile-menu">
+                <ul>
+                    <li><a class="" href="{% url 'home' %}">Home</a></li>
+                    <li><a href="./categories.html">Category</a>
+                        <ul class="sub-menu">
+                            {% for category in categorys %}
+                            <li><a href="{% url 'categoryproducts' category.slug %}">{{ category.title }}</a></li>
+                            {% endfor %}
+                            
+                        </ul>
+                    </li>
+                    <li><a href="{% url 'productlist' %}">Product</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
